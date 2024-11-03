@@ -91,5 +91,147 @@ LinkedIn: [https://www.linkedin.com/in/guymorganb/]
 Instagram: [https://www.instagram.com/guyycodes/]
 
 
+# Development Environment Setup Scripts
 
+This repository contains a collection of shell scripts to set up a complete development environment on Ubuntu. These scripts handle the installation and configuration of essential development tools including SDKMan, NVM, Oh-My-Zsh, Java, Maven, and Node.js.
+
+## Prerequisites
+
+Ensure you're running Ubuntu and have basic tools installed:
+```bash
+sudo apt-get update
+sudo apt-get install -y curl git build-essential
+```
+
+## Installation Scripts
+
+### 1. SDKMan Installation
+```bash
+chmod +x install_sdkman.sh
+./install_sdkman.sh
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+```
+
+### 2. NVM Installation
+```bash
+chmod +x install_nvm.sh
+./install_nvm.sh
+source "$HOME/.nvm/nvm.sh"
+```
+
+### 3. Oh-My-Zsh Installation with Optional Powerlevel10k
+```bash
+chmod +x install_oh-my-zsh.sh
+./install_oh-my-zsh.sh
+```
+During installation, you'll be prompted:
+1. Whether to install Powerlevel10k theme
+2. Whether to install the recommended MesloLGS NF fonts
+
+After installation:
+```bash
+exec zsh
+```
+If you installed Powerlevel10k, follow the configuration wizard that appears.
+
+## Post-Installation Setup
+
+### Installing Java 20
+After installing SDKMan, run:
+```bash
+sdk install java 20.0.2-open
+sdk use java 20.0.2-open
+```
+
+Verify installation:
+```bash
+java -version
+```
+
+### Installing Maven
+Using SDKMan:
+```bash
+sdk install maven
+```
+
+Verify installation:
+```bash
+mvn -version
+```
+
+### Installing Node.js 18
+Using NVM:
+```bash
+nvm install 18
+nvm use 18
+```
+
+Verify installation:
+```bash
+node --version
+npm --version
+```
+
+## Terminal Configuration
+
+If you installed Powerlevel10k and MesloLGS NF fonts:
+1. Set your terminal emulator's font to "MesloLGS NF"
+2. If needed, run `p10k configure` to reconfigure your prompt
+
+## Verifying All Installations
+
+Run these commands to verify everything is installed correctly:
+```bash
+# Java
+java -version
+
+# Maven
+mvn -version
+
+# Node.js
+node --version
+npm --version
+
+# SDKMan
+sdk version
+
+# NVM
+nvm --version
+```
+
+## Troubleshooting
+
+### SDKMan Issues
+- If `sdk` command is not found, try:
+  ```bash
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+  ```
+
+### NVM Issues
+- If `nvm` command is not found, try:
+  ```bash
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  ```
+
+### Oh-My-Zsh Issues
+- If the Powerlevel10k font doesn't display correctly:
+  1. Verify "MesloLGS NF" is set as your terminal font
+  2. Run `p10k configure` to reconfigure
+  3. Restart your terminal
+
+## Updates
+
+To keep your tools updated:
+- SDKMan: `sdk upgrade`
+- NVM/Node.js: `nvm install node --latest-npm`
+- Oh-My-Zsh: `omz update`
+- Powerlevel10k: `git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull`
+
+## Additional Resources
+
+- [SDKMan Documentation](https://sdkman.io/usage)
+- [NVM GitHub Repository](https://github.com/nvm-sh/nvm)
+- [Oh-My-Zsh Documentation](https://github.com/ohmyzsh/ohmyzsh/wiki)
+- [Powerlevel10k Documentation](https://github.com/romkatv/powerlevel10k)
 
